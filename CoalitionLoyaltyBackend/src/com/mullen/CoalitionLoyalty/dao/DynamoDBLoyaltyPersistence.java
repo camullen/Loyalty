@@ -9,6 +9,7 @@ import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider;
 import com.amazonaws.services.dynamodb.AmazonDynamoDB;
 import com.amazonaws.services.dynamodb.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodb.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodb.datamodeling.DynamoDBScanExpression;
 import com.mullen.CoalitionLoyalty.model.Location;
 import com.mullen.CoalitionLoyalty.model.User;
 
@@ -38,17 +39,20 @@ public class DynamoDBLoyaltyPersistence implements LoyaltyPersistence {
 		
 		close();
 	}
+
 	
+	public void killAll(){
+		killAllLocations();
+		killAllUsers();
+	}
 	
+	public void killAllLocations(){
+		mapper.batchDelete(getAllLocations());
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void killAllUsers(){
+		mapper.batchDelete(getAllUsers());
+	}
 	
 	
 	
@@ -57,8 +61,7 @@ public class DynamoDBLoyaltyPersistence implements LoyaltyPersistence {
 	 */
 	@Override
 	public List<Location> getAllLocations() {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.scan(Location.class, new DynamoDBScanExpression());
 	}
 
 	/* (non-Javadoc)
@@ -66,8 +69,7 @@ public class DynamoDBLoyaltyPersistence implements LoyaltyPersistence {
 	 */
 	@Override
 	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.scan(User.class, new DynamoDBScanExpression());
 	}
 
 	/* (non-Javadoc)
@@ -75,8 +77,7 @@ public class DynamoDBLoyaltyPersistence implements LoyaltyPersistence {
 	 */
 	@Override
 	public Location getLocation(int locationID) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.load(Location.class, locationID);
 	}
 
 	/* (non-Javadoc)
@@ -92,8 +93,8 @@ public class DynamoDBLoyaltyPersistence implements LoyaltyPersistence {
 	 */
 	@Override
 	public int updateLocation(Location loc) {
-		// TODO Auto-generated method stub
-		return 0;
+		mapper.save(loc);
+		return SUCCESS;
 	}
 
 	/* (non-Javadoc)

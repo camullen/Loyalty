@@ -3,10 +3,14 @@
  */
 package com.mullen.CoalitionLoyalty.model.test;
 
+import java.util.List;
+import java.util.Random;
+
 import junit.framework.TestCase;
 
 import com.mullen.CoalitionLoyalty.dao.DynamoDBLoyaltyPersistence;
 import com.mullen.CoalitionLoyalty.dao.LoyaltyPersistence;
+import com.mullen.CoalitionLoyalty.model.Location;
 import com.mullen.CoalitionLoyalty.model.User;
 
 /**
@@ -15,7 +19,7 @@ import com.mullen.CoalitionLoyalty.model.User;
  */
 public class DynamoDBLoyaltyPersistenceTest extends TestCase  {
 	
-	private LoyaltyPersistence persist;
+	private DynamoDBLoyaltyPersistence persist;
 	
 	
 	/**
@@ -36,6 +40,7 @@ public class DynamoDBLoyaltyPersistenceTest extends TestCase  {
 	}
 	
 	protected void tearDown() throws Exception {
+		persist.killAll();
 		persist.close();
 		super.tearDown();
 	}
@@ -44,29 +49,45 @@ public class DynamoDBLoyaltyPersistenceTest extends TestCase  {
 	 * Test method for {@link com.mullen.CoalitionLoyalty.dao.DynamoDBLoyaltyPersistence#getAllLocations()}.
 	 */
 	public void testGetAllLocations() {
-		fail("Not yet implemented");
+		int numItemsToAdd = 100;
+		
+		for(int i = 0; i < numItemsToAdd; i++){
+			persist.updateLocation(new Location());
+		}
+		
+		List<Location> allLocations = persist.getAllLocations();
+		
+		assertEquals(allLocations.size(), numItemsToAdd);
+		
 	}
 
 	/**
 	 * Test method for {@link com.mullen.CoalitionLoyalty.dao.DynamoDBLoyaltyPersistence#getAllUsers()}.
 	 */
 	public void testGetAllUsers() {
-		fail("Not yet implemented");
+		int numItemsToAdd = 100;
+		
+		for(int i = 0; i < numItemsToAdd; i++){
+			persist.updateUser(new User());
+		}
+		
+		List<User> allUsers = persist.getAllUsers();
+		
+		assertEquals(allUsers.size(), numItemsToAdd);
 	}
 
 	/**
 	 * Test method for {@link com.mullen.CoalitionLoyalty.dao.DynamoDBLoyaltyPersistence#getLocation(int)}.
 	 */
-	public void testGetLocation() {
-		fail("Not yet implemented");
-	}
 
-	/**
-	 * Test method for {@link com.mullen.CoalitionLoyalty.dao.DynamoDBLoyaltyPersistence#getUser(int)}.
-	 */
-	
 	public void testUpdateLocation() {
-		fail("Not yet implemented");
+		int locationID = new Random().nextInt();
+		Location loc = new Location(locationID, 1, 10);
+		int result = persist.updateLocation(loc);
+		Location retrievedLoc = persist.getLocation(locationID);
+		
+		assertEquals(result, LoyaltyPersistence.SUCCESS);
+		assertEquals(retrievedLoc, loc);
 	}
 
 	/**
@@ -79,8 +100,10 @@ public class DynamoDBLoyaltyPersistenceTest extends TestCase  {
 		int result = persist.updateUser(usr);
 		User retrievedUser = persist.getUser(userID);
 		
-		assertEquals(retrievedUser, usr);
+		
 		assertEquals(result, LoyaltyPersistence.SUCCESS);
+		assertEquals(retrievedUser, usr);
+		
 	}
 
 }
