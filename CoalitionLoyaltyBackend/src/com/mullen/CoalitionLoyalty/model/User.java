@@ -40,6 +40,8 @@ public class User {
 	}
 	
 	
+	//UTILITY METHODS
+	
 	
 	public void incrementPoints(int points){
 		numPoints += points;
@@ -81,6 +83,46 @@ public class User {
 	 */
 	public void setNumPoints(int numPoints) {
 		this.numPoints = numPoints;
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + numPoints;
+		result = prime * result + userID;
+		return result;
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof User)) {
+			return false;
+		}
+		User other = (User) obj;
+		if (numPoints != other.numPoints) {
+			return false;
+		}
+		if (userID != other.userID) {
+			return false;
+		}
+		return true;
 	}
 
 	

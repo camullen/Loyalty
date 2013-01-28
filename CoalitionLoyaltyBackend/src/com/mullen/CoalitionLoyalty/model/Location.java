@@ -73,6 +73,46 @@ public class Location {
 	public void setRedeemCost(int redeemCost) {
 		this.redeemCost = redeemCost;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + locationID;
+		result = prime * result + redeemCost;
+		result = prime * result + visitValue;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Location)) {
+			return false;
+		}
+		Location other = (Location) obj;
+		if (locationID != other.locationID) {
+			return false;
+		}
+		if (redeemCost != other.redeemCost) {
+			return false;
+		}
+		if (visitValue != other.visitValue) {
+			return false;
+		}
+		return true;
+	}
 	
 	
 	

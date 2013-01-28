@@ -13,7 +13,7 @@ import com.mullen.CoalitionLoyalty.model.User;
 
 /**
  * Basic implementation of the LoyaltyPersistence interface that stores the objects in memory
- * @author cmullen
+ * @author Cameron Mullen
  *
  */
 public class TempLoyaltyPersistence implements LoyaltyPersistence {

@@ -9,7 +9,7 @@ import com.mullen.CoalitionLoyalty.model.Location;
 import com.mullen.CoalitionLoyalty.model.User;
 
 /**
- * @author cmullen
+ * @author Cameron Mullen
  * 
  */
 public interface LoyaltyPersistence {
