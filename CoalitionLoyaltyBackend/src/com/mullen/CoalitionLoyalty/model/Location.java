@@ -2,6 +2,11 @@ package com.mullen.CoalitionLoyalty.model;
 
 import java.util.Random;
 
+import com.amazonaws.services.dynamodb.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodb.datamodeling.DynamoDBTable;
+
+
+@DynamoDBTable(tableName = "LocationsTest")
 public class Location {
 	public static Random RAND_GEN = new Random();
 	public static final int DEFAULT_VISIT_VALUE = 1;
@@ -9,6 +14,7 @@ public class Location {
 	
 	
 	//FIELDS
+	
 	private int locationID;
 	private int visitValue;
 	private int redeemCost;
@@ -40,6 +46,7 @@ public class Location {
 	/**
 	 * @return the locationID
 	 */
+	@DynamoDBHashKey(attributeName="locationID")
 	public int getLocationID() {
 		return locationID;
 	}

@@ -21,6 +21,8 @@ public class TempLoyaltyPersistence implements LoyaltyPersistence {
 	Map<Integer, User> allUsers = new HashMap<Integer, User>();
 	Map<Integer, Location> allLocations = new HashMap<Integer, Location>();
 	
+	public void close(){}
+	
 	
 	/* (non-Javadoc)
 	 * @see com.mullen.CoalitionLoyalty.dao.LoyaltyPersistence#getUser(int)

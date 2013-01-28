@@ -50,8 +50,6 @@ public class TempLoyaltyPersistenceTest extends TestCase {
 		assertNull(initialGet);
 		assertEquals(secondGet, sourceUser);
 		
-		
-		fail("Not yet implemented");
 	}
 
 	/**

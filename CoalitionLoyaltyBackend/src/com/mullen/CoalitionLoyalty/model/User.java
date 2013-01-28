@@ -5,10 +5,15 @@ package com.mullen.CoalitionLoyalty.model;
 
 import java.util.Random;
 
+import com.amazonaws.services.dynamodb.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodb.datamodeling.DynamoDBTable;
+
 /**
- * @author cmullen
+ * @author Cameron Mullen
  *
  */
+
+@DynamoDBTable(tableName = "UsersTest")
 public class User {
 	//UTILITY OBJECT
 	private static Random RAND_GEN = new Random();
@@ -63,6 +68,7 @@ public class User {
 	/**
 	 * @return the userID
 	 */
+	@DynamoDBHashKey(attributeName="userID")
 	public int getUserID() {
 		return userID;
 	}

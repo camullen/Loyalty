@@ -25,6 +25,10 @@ public interface LoyaltyPersistence {
 	public static final int UNKNOWN_ERROR = 0;
 
 	
+	
+	public void close();
+	
+	
 	/**
 	 * Gets all Location objects in storage
 	 * @return A List of all Location objects in storage. Returns an empty list if no Locations stored.
