@@ -39,7 +39,7 @@ public class User {
 		this(userID, 0);
 	}
 	
-	
+
 	//UTILITY METHODS
 	
 	
