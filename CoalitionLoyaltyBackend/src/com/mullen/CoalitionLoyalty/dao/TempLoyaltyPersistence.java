@@ -12,6 +12,7 @@ import com.mullen.CoalitionLoyalty.model.Location;
 import com.mullen.CoalitionLoyalty.model.User;
 
 /**
+ * Basic implementation of the LoyaltyPersistence interface that stores the objects in memory
  * @author cmullen
  *
  */
