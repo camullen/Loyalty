@@ -62,7 +62,7 @@ public class LoyaltyBrainTest extends TestCase {
 		
 		assertEquals(redeemSuccess1, LoyaltyBrain.SUCCESS);
 		assertEquals(usr1.getUserID(), userID1);
-		assertEquals(usr1.getNumPoints(), numPoints1 - locationValue);
+		assertEquals(usr1.getNumPoints(), numPoints1 - locationRedeemCost);
 		
 		assertEquals(redeemSuccess2, LoyaltyBrain.INSUFFICIENT_POINTS);
 		assertEquals(usr2.getUserID(), userID2);
